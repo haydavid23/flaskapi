@@ -36,27 +36,38 @@ class Cart(db.Model):
     def serialize(self):
         return {
             "create_date": self.create_date,
-            # "person_id": self.person_id
+            "person_id": self.person_id
 
         }
 
-# class CartItem(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     # cart_id=db.Column(db.Integer,db.ForeignKey('cart.id'), unique=True, nullable=False, default='')
-#     product_id = db.Column(db.Integer,nullable=False)
-#     quantity = db.Column(db.Integer, nullable=False)
-#     price = db.Column(db.Integer ,nullable=False)
+class CartItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # cart_id=db.Column(db.Integer,db.ForeignKey('cart.id'), unique=True, nullable=False, default='')
+    product_id = db.Column(db.Integer,nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer ,nullable=False)
 
+    def __repr__(self):
+        return '<CartItem %r>' % self.cart_id
 
+    def serialize(self):
+        return {
+            # "cart_id": self.cart_id,
+            "product_id": self.product_id,
+            "quantity": self.quantity,
+            "price": self.price
 
-#     def __repr__(self):
-#         return '<CartItem %r>' % self.cart_id
+        }
 
-#     def serialize(self):
-#         return {
-#             # "cart_id": self.cart_id,
-#             "product_id": self.product_id,
-#             "quantity": self.quantity,
-#             "price": self.price
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String(120), unique=True, nullable=False, default='')
 
-#         }
+    def __repr__(self):
+        return '<Product %r>' % self.description
+
+    def serialize(self):
+        return {
+            "description": self.descriptiob
+
+        }
