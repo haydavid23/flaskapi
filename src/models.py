@@ -9,7 +9,7 @@ class Person(db.Model):
     first_name = db.Column(db.String(120), unique=False, nullable=False, default='')
     last_name = db.Column(db.String(120), unique=False, nullable=False, default='')
     phone = db.Column(db.String(120), unique=True, nullable=False, default='')
-    # cart = db.relationship('Cart', backref='person', lazy=True)
+    cart = db.relationship('Cart', backref='person', lazy=True)
 
     def __repr__(self):
         return '<Person %r>' % self.username
@@ -27,7 +27,7 @@ class Person(db.Model):
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     create_date=db.Column(db.String(80), unique=True, nullable=False, default='')
-    # person_id = db.Column(db.Integer, db.ForeignKey('person.id'),nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'),nullable=False)
     # cart_item = db.relationship('CartItem', backref='cart', lazy=True)
 
     def __repr__(self):
@@ -46,8 +46,8 @@ class Cart(db.Model):
 #     product_id = db.Column(db.Integer,nullable=False)
 #     quantity = db.Column(db.Integer, nullable=False)
 #     price = db.Column(db.Integer ,nullable=False)
-   
-    
+
+
 
 #     def __repr__(self):
 #         return '<CartItem %r>' % self.cart_id
