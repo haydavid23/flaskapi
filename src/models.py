@@ -68,6 +68,6 @@ class Product(db.Model):
 
     def serialize(self):
         return {
-            "description": self.descriptiob
+            "description": self.description
 
         }
