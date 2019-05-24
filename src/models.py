@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False, default='')
+    username = db.Column(db.String(80), unique=False, nullable=False, default='')
     email = db.Column(db.String(120), unique=True, nullable=False, default='')
     first_name = db.Column(db.String(120), unique=False, nullable=False, default='')
     last_name = db.Column(db.String(120), unique=False, nullable=False, default='')
